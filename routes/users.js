@@ -66,7 +66,7 @@ router.put('/:userId', async (req, res) => {
         const { userId } = req.params;
         const { userName } = req.body;
         console.log(userId + userName)
-        const updatedUser = await User.updateOne({_id: userId}, {userName: userName});
+        const updatedUser = await User.updateOne({_id: userId}, { $set: {userName: userName}});
         res.json({updatedUser: updatedUser, status: true});
         return;
     } catch (err) {
@@ -74,5 +74,7 @@ router.put('/:userId', async (req, res) => {
         return;
     } 
 })
+
+
 
 module.exports = router;
